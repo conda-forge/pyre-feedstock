@@ -14,7 +14,7 @@ source:
 
 build:
   number: 3
-  skip: True  # [win or py2k]
+  skip: True  # [win or py2k or python_impl == 'pypy' ]
 
 requirements:
   build:
