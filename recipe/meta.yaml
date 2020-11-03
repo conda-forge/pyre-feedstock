@@ -13,8 +13,8 @@ source:
         - pyre_version.patch
 
 build:
-  number: 2
-  skip: True  # [win or py2k]
+  number: 3
+  skip: True  # [win or py2k or python_impl == 'pypy' ]
 
 requirements:
   build:
