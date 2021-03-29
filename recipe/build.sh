@@ -16,12 +16,9 @@ mkdir build && cd build
 relpath(){ $PYTHON -c "print('$1'[len('$2')+1:])"; }
 pypkgrel=$(relpath $SP_DIR $PREFIX)
 
-# BUILD_TESTING=y enables pyre's test suite
-# Remove after merging https://github.com/pyre/pyre/pull/60
 # Override LIBDIR from GNUInstallDirs - would be lib64 on centos
 # Specify $PYTHON to avoid using system python
 cmake \
-    -DBUILD_TESTING=y \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
