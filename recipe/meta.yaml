@@ -23,6 +23,7 @@ requirements:
     - cmake
     - make  # [unix]
   host:
+    - pybind11
     - python
     - zip
   run:
