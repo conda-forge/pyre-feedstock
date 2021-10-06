@@ -23,7 +23,7 @@ cmake \
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DPYRE_DEST_PACKAGES=$pypkgrel \
-    -DPython3_EXECUTABLE=$PYTHON \
+    -DPython_EXECUTABLE=$PYTHON \
     $SRC_DIR
 
 cmake --build . --target install -j${CPU_COUNT}
