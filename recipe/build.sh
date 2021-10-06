@@ -24,6 +24,7 @@ cmake \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DPYRE_DEST_PACKAGES=$pypkgrel \
     -DPython_EXECUTABLE=$PYTHON \
+    -DPYRE_VERSION=$PKG_VERSION \
     $SRC_DIR
 
 cmake --build . --target install -j${CPU_COUNT}
