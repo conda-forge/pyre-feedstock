@@ -8,9 +8,6 @@ package:
 source:
   - url: https://github.com/pyre/pyre/archive/v{{ version }}.tar.gz
     sha256: f5f81bb7964a4a35fb098627ce8d78ffb2d9236a303627fac125a246b299e533
-    patches:
-        # Hard-coded version, since the auto-versioning requires a cloned repo
-      - pyre_version.patch
 
 build:
   number: 0
