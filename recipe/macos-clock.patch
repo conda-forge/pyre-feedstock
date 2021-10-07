@@ -1,0 +1,20 @@
+--- a/lib/pyre/timers/ProcessClock.icc
++++ b/lib/pyre/timers/ProcessClock.icc
+@@ -14,6 +14,7 @@ auto
+ pyre::timers::ProcessClock::
+ now() -> time_point_type
+ {
++#if defined(CLOCK_PROCESS_CPUTIME_ID)
+     // make some room
+     timespec t;
+     // get the process CPU time
+@@ -22,6 +23,9 @@ now() -> time_point_type
+     duration_type since_epoch(1000*1000*1000*t.tv_sec + t.tv_nsec);
+     // turn that into a time stamp and return it
+     return time_point_type(since_epoch);
++#else
++    throw std::runtime_error("Platform doesn't support CLOCK_PROCESS_CPUTIME_ID");
++#endif
+ }
+ 
+ 
