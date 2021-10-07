@@ -27,5 +27,5 @@ cmake --build . --target install -j${CPU_COUNT}
 # Disable TCP test on Docker
 # Reenable locale_codec after resolving https://github.com/pyre/pyre/issues/65
 ctest \
-    -E '(pyre.pkg.ipc.tcp.py|python.locale_codec.py)' \
+    -E '(pyre.pkg.ipc.tcp.py|python.locale_codec.py|pyre.pkg.codecs.yaml_)' \
     --output-on-failure
