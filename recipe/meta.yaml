@@ -11,8 +11,6 @@ source:
     patches:
         # Fallback clock stub for pre-10.12 SDK
         - macos-clock.patch
-        # Promise minor version compatibility
-        - version-compat.patch
 
 build:
   number: 0
