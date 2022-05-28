@@ -23,10 +23,12 @@ requirements:
     - cmake
     - make  # [unix]
   host:
+    - hdf5
     - pybind11
     - python
     - zip
   run:
+    - hdf5
     - python
 
 test:
