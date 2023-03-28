@@ -1,5 +1,5 @@
 {% set name = "pyre" %}
-{% set version = "1.11.2" %}
+{% set version = "1.12.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   - url: https://github.com/pyre/pyre/archive/v{{ version }}.tar.gz
-    sha256: 34e5fa4cef8df5d95117a65ec942ad8e62824917c96caf189a2e6b432e9c84db
+    sha256: e6a5dedfe2505f51cc0ab74d0aa7a5d7148df184d27109405240400c02403fa1
     patches:
         # Fallback clock stub for pre-10.12 SDK
       - macos-clock.patch
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win or py2k or python_impl == 'pypy']
 
 requirements:
