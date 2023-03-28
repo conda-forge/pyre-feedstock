@@ -28,7 +28,6 @@ requirements:
     - python
     - zip
   run:
-    - hdf5
     - python
 
 test:
