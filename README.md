@@ -1,11 +1,11 @@
-About pyre
-==========
+About pyre-feedstock
+====================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pyre-feedstock/blob/main/LICENSE.txt)
 
 Home: http://pyre.orthologue.com
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pyre-feedstock/blob/main/LICENSE.txt)
 
 Summary: A Python framework for scientific applications
 
