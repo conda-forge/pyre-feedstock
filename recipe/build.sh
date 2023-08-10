@@ -19,7 +19,7 @@ mkdir build && cd build
 
 # Override LIBDIR from GNUInstallDirs - would be lib64 on centos
 # Specify $PYTHON to avoid using system python
-cmake \
+cmake ${CMAKE_ARGS} \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
