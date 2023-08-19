@@ -11,9 +11,11 @@ source:
     patches:
         # Fallback clock stub for pre-10.12 SDK
       - macos-clock.patch
+        # Fix missing file in cmake for bindings
+      - fix-mem-bindings.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win or py2k or python_impl == 'pypy']
 
 requirements:
