@@ -11,6 +11,8 @@ source:
     patches:
         # Fallback clock stub for pre-10.12 SDK
       - macos-clock.patch
+        # Use builtin Python_SOABI cmake var instead of distutils
+      - python-soabi.patch
 
 build:
   number: 2
