@@ -27,6 +27,7 @@ requirements:
     - make  # [unix]
   host:
     - hdf5
+    - numpy
     - pybind11
     - python
     - zip
