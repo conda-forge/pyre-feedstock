@@ -27,6 +27,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - make  # [unix]
+    - numpy
   host:
     - hdf5
     - numpy
