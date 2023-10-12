@@ -16,12 +16,14 @@ docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 hdf5:
 - 1.14.2
+numpy:
+- '1.22'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
+- 3.10.* *_cpython
 python_impl:
 - cpython
 target_platform:
@@ -30,4 +32,5 @@ zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
 - - python
+  - numpy
   - python_impl
