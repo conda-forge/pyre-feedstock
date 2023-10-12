@@ -16,7 +16,7 @@ index c03779323..f07d024a5 100644
 -    )
    # export
 -  set(PYTHON3_SUFFIX ${PYTHON3_SUFFIX} PARENT_SCOPE)
-+  set(PYTHON3_SUFFIX ".${Python_SOABI}" PARENT_SCOPE)
++  set(PYTHON3_SUFFIX ".${Python_SOABI}${CMAKE_SHARED_MODULE_SUFFIX}" PARENT_SCOPE)
    # all done
  endfunction(pyre_pythonInit)
  
