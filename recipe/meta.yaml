@@ -9,6 +9,8 @@ source:
   - url: https://github.com/pyre/pyre/archive/v{{ version }}.tar.gz
     sha256: b012445bcd085f9ed1a3ce51306e597ac4c575ea2f43c509ce4c9371da201571
     patches:
+        # missing ';' in a statement
+        process-timer.patch
 
 build:
   number: 0
