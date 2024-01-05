@@ -1,5 +1,5 @@
 {% set name = "pyre" %}
-{% set version = "1.12.3" %}
+{% set version = "1.12.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,15 +7,13 @@ package:
 
 source:
   - url: https://github.com/pyre/pyre/archive/v{{ version }}.tar.gz
-    sha256: 18cfa8461fd273f815e433cfe80eeb69174a1b8b62fc0b81dd0b403d74272d1a
+    sha256: b012445bcd085f9ed1a3ce51306e597ac4c575ea2f43c509ce4c9371da201571
     patches:
-        # Fallback clock stub for pre-10.12 SDK
-      - macos-clock.patch
-        # Use builtin Python_SOABI cmake var instead of distutils
-      - python-soabi.patch
+        # missing ';' in a statement
+        process-timer.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [win or py2k or python_impl == 'pypy']
 
 requirements:
