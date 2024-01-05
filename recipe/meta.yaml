@@ -9,10 +9,6 @@ source:
   - url: https://github.com/pyre/pyre/archive/v{{ version }}.tar.gz
     sha256: b012445bcd085f9ed1a3ce51306e597ac4c575ea2f43c509ce4c9371da201571
     patches:
-        # Fallback clock stub for pre-10.12 SDK
-      - macos-clock.patch
-        # Use builtin Python_SOABI cmake var instead of distutils
-      - python-soabi.patch
 
 build:
   number: 0
