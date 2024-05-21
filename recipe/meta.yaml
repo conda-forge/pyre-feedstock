@@ -1,5 +1,5 @@
 {% set name = "pyre" %}
-{% set version = "1.12.4" %}
+{% set version = "1.12.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,7 @@ package:
 
 source:
   - url: https://github.com/pyre/pyre/archive/v{{ version }}.tar.gz
-    sha256: b012445bcd085f9ed1a3ce51306e597ac4c575ea2f43c509ce4c9371da201571
-    patches:
-        # missing ';' in a statement
-        process-timer.patch
+    sha256: e46ff416d0cc67169b08b075795e991092ba86670a3ae126f3f33be53e322ef2
 
 build:
   number: 0
@@ -22,6 +19,7 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - pybind11                               # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - cmake
     - make  # [unix]
