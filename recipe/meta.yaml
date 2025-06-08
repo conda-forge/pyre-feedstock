@@ -1,8 +1,7 @@
-{% set name = "pyre" %}
 {% set version = "1.12.5" %}
 
 package:
-  name: {{ name|lower }}
+  name: pyre
   version: {{ version }}
 
 source:
@@ -11,7 +10,7 @@ source:
 
 build:
   number: 5
-  skip: true  # [win or py2k or python_impl == 'pypy']
+  skip: true  # [win]
 
 requirements:
   build:
