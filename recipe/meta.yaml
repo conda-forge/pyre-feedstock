@@ -12,7 +12,7 @@ source:
       python3-suffix.patch
 
 build:
-  number: 5
+  number: 6
   skip: true  # [win or py2k or python_impl == 'pypy']
 
 requirements:
