@@ -1,8 +1,7 @@
-{% set name = "pyre" %}
 {% set version = "1.12.5" %}
 
 package:
-  name: {{ name|lower }}
+  name: pyre
   version: {{ version }}
 
 source:
