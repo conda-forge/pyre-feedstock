@@ -1,0 +1,139 @@
+diff --git a/.cmake/pyre_cuda.cmake b/.cmake/pyre_cuda.cmake
+index 5724985a5..93f1a6d9d 100644
+--- a/.cmake/pyre_cuda.cmake
++++ b/.cmake/pyre_cuda.cmake
+@@ -57,10 +57,9 @@ function(pyre_cudaModule)
+   # if the user requested CUDA support
+   if(WITH_CUDA)
+     # the cuda bindings
+-    Python_add_library(cudamodule MODULE)
++    Python_add_library(cudamodule MODULE WITH_SOABI)
+     # adjust the name to match what python expects
+     set_target_properties(cudamodule PROPERTIES LIBRARY_OUTPUT_NAME cuda)
+-    set_target_properties(cudamodule PROPERTIES SUFFIX ${PYTHON3_SUFFIX})
+     # specify the directory for the module compilation products
+     pyre_library_directory(cudamodule extensions)
+     # set the libraries to link against
+diff --git a/.cmake/pyre_gsl.cmake b/.cmake/pyre_gsl.cmake
+index b6ad5dd5f..174690418 100644
+--- a/.cmake/pyre_gsl.cmake
++++ b/.cmake/pyre_gsl.cmake
+@@ -23,10 +23,9 @@ endfunction(pyre_gslPackage)
+ function(pyre_gslModule)
+   # if we have gsl
+   if (${GSL_FOUND})
+-    Python_add_library(gslmodule MODULE)
++    Python_add_library(gslmodule MODULE WITH_SOABI)
+     # adjust the name to match what python expects
+     set_target_properties(gslmodule PROPERTIES LIBRARY_OUTPUT_NAME gsl)
+-    set_target_properties(gslmodule PROPERTIES SUFFIX ${PYTHON3_SUFFIX})
+     # specify the directory for the module compilation products
+     pyre_library_directory(gslmodule extensions)
+     # set the include directories
+diff --git a/.cmake/pyre_h5.cmake b/.cmake/pyre_h5.cmake
+index 7837e2050..64d4d2b5b 100644
+--- a/.cmake/pyre_h5.cmake
++++ b/.cmake/pyre_h5.cmake
+@@ -8,10 +8,9 @@
+ function(pyre_h5Module)
+   if(HDF5_FOUND)
+     # h5
+-    Python_add_library(h5module MODULE)
++    Python_add_library(h5module MODULE WITH_SOABI)
+     # adjust the name to match what python expects
+     set_target_properties(h5module PROPERTIES LIBRARY_OUTPUT_NAME h5)
+-    set_target_properties(h5module PROPERTIES SUFFIX ${PYTHON3_SUFFIX})
+     # specify the directory for the module compilation products
+     pyre_library_directory(h5module extensions)
+     # set the libraries to link against
+diff --git a/.cmake/pyre_init.cmake b/.cmake/pyre_init.cmake
+index 663c10f98..d94433bfd 100644
+--- a/.cmake/pyre_init.cmake
++++ b/.cmake/pyre_init.cmake
+@@ -34,8 +34,6 @@ endfunction(pyre_cmakeInit)
+ 
+ # setup python
+ function(pyre_pythonInit)
+-  # save the module suffix
+-  set(PYTHON3_SUFFIX ".${Python_SOABI}${CMAKE_SHARED_MODULE_SUFFIX}" PARENT_SCOPE)
+   # all done
+ endfunction(pyre_pythonInit)
+ 
+diff --git a/.cmake/pyre_journal.cmake b/.cmake/pyre_journal.cmake
+index b6ceda66b..070fd976f 100644
+--- a/.cmake/pyre_journal.cmake
++++ b/.cmake/pyre_journal.cmake
+@@ -92,12 +92,11 @@ endfunction(pyre_journalLib)
+ # build the journal python extension
+ function(pyre_journalModule)
+   # journal
+-  Python_add_library(journalmodule MODULE)
++  Python_add_library(journalmodule MODULE WITH_SOABI)
+   # turn on the core macro
+   set_target_properties(journalmodule PROPERTIES COMPILE_DEFINITIONS PYRE_CORE)
+   # adjust the name to match what python expects
+   set_target_properties(journalmodule PROPERTIES LIBRARY_OUTPUT_NAME journal)
+-  set_target_properties(journalmodule PROPERTIES SUFFIX ${PYTHON3_SUFFIX})
+   # specify the directory for the module compilation products
+   pyre_library_directory(journalmodule extensions)
+   # set the libraries to link against
+diff --git a/.cmake/pyre_mpi.cmake b/.cmake/pyre_mpi.cmake
+index dff20e08c..12c6f3f3e 100644
+--- a/.cmake/pyre_mpi.cmake
++++ b/.cmake/pyre_mpi.cmake
+@@ -70,10 +70,9 @@ endfunction(pyre_mpiLib)
+ function(pyre_mpiModule)
+   # if we have mpi
+   if (${MPI_FOUND})
+-    Python_add_library(mpimodule MODULE)
++    Python_add_library(mpimodule MODULE WITH_SOABI)
+     # adjust the name to match what python expects
+     set_target_properties(mpimodule PROPERTIES LIBRARY_OUTPUT_NAME mpi)
+-    set_target_properties(mpimodule PROPERTIES SUFFIX ${PYTHON3_SUFFIX})
+     # specify the directory for the module compilation products
+     pyre_library_directory(mpimodule extensions)
+     # set the libraries to link against
+diff --git a/.cmake/pyre_postgres.cmake b/.cmake/pyre_postgres.cmake
+index f7b9ea679..50e56f1ab 100644
+--- a/.cmake/pyre_postgres.cmake
++++ b/.cmake/pyre_postgres.cmake
+@@ -8,10 +8,9 @@
+ function(pyre_postgresModule)
+   # if we have postgres
+   if (${PostgreSQL_FOUND})
+-    Python_add_library(postgresmodule MODULE)
++    Python_add_library(postgresmodule MODULE WITH_SOABI)
+     # adjust the name to match what python expects
+     set_target_properties(postgresmodule PROPERTIES LIBRARY_OUTPUT_NAME postgres)
+-    set_target_properties(postgresmodule PROPERTIES SUFFIX ${PYTHON3_SUFFIX})
+     # specify the directory for the module compilation products
+     pyre_library_directory(postgresmodule extensions)
+     # set the include directories
+diff --git a/.cmake/pyre_pyre.cmake b/.cmake/pyre_pyre.cmake
+index 508c5d0bb..930cd2e6d 100644
+--- a/.cmake/pyre_pyre.cmake
++++ b/.cmake/pyre_pyre.cmake
+@@ -157,10 +157,9 @@ endfunction(pyre_pyreLib)
+ # build the pyre extension modules
+ function(pyre_pyreModule)
+   # the pyre bindings
+-  Python_add_library(pyremodule MODULE)
++  Python_add_library(pyremodule MODULE WITH_SOABI)
+   # adjust the name to match what python expects
+   set_target_properties(pyremodule PROPERTIES LIBRARY_OUTPUT_NAME pyre)
+-  set_target_properties(pyremodule PROPERTIES SUFFIX ${PYTHON3_SUFFIX})
+   # specify the directory for the module compilation products
+   pyre_library_directory(pyremodule extensions)
+   # set the libraries to link against
+@@ -186,10 +185,9 @@ function(pyre_pyreModule)
+   )
+ 
+   # host
+-  Python_add_library(hostmodule MODULE)
++  Python_add_library(hostmodule MODULE WITH_SOABI)
+   # adjust the name to match what python expects
+   set_target_properties(hostmodule PROPERTIES LIBRARY_OUTPUT_NAME host)
+-  set_target_properties(hostmodule PROPERTIES SUFFIX ${PYTHON3_SUFFIX})
+   # specify the directory for the module compilation products
+   pyre_library_directory(hostmodule extensions)
+   # set the libraries to link against
