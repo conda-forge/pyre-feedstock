@@ -1,4 +1,4 @@
-{% set version = "1.12.5" %}
+{% set version = "1.12.6" %}
 
 package:
   name: pyre
@@ -6,13 +6,11 @@ package:
 
 source:
   - url: https://github.com/pyre/pyre/archive/v{{ version }}.tar.gz
-    sha256: e46ff416d0cc67169b08b075795e991092ba86670a3ae126f3f33be53e322ef2
-    patches:
-      # Fix macOS arm64 python extension SOABI suffix
-      python3-suffix.patch
+    sha256: 9bfb4337ee47e2c1b2d6a3cbb254cb4a00cb3ef00161e4043c43b3d745a1eecb
+    patches: python3-suffix.patch
 
 build:
-  number: 8
+  number: 0
   skip: true  # [win or py2k or python_impl == 'pypy']
 
 requirements:
