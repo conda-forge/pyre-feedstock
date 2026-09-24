@@ -1,4 +1,4 @@
-{% set version = "1.12.6" %}
+{% set version = "1.13.1" %}
 
 package:
   name: pyre
@@ -6,12 +6,13 @@ package:
 
 source:
   - url: https://github.com/pyre/pyre/archive/v{{ version }}.tar.gz
-    sha256: 9bfb4337ee47e2c1b2d6a3cbb254cb4a00cb3ef00161e4043c43b3d745a1eecb
+    sha256: 1da16a27c8055ee724b8c2e6057f97f93f55325931ea27da217689a3e445bfda
     patches:
 
 build:
-  number: 1
-  skip: true  # [win or py2k or python_impl == 'pypy']
+  number: 0
+  # the python floor is 3.11 as of v1.13.0
+  skip: true  # [win or py<311 or python_impl == 'pypy']
 
 requirements:
   build:
@@ -31,14 +32,29 @@ requirements:
     - zip
   run:
     - python
+    # the yaml configuration codec; a declared dependency of the python package
+    - pyyaml
+    # the round trip editor of yaml configuration files and the persistence of component
+    # state ride on it; optional for pip, where it is the {editing} extra, included here
+    - ruamel.yaml
 
 test:
   requires:
-    - cmake
+    # the yaml codec rides on pyyaml, and the round trip editor of yaml configuration files
+    # on ruamel.yaml; the tests of the latter skip themselves when it is absent
+    - pyyaml
+    - ruamel.yaml
   commands:
-    # Disable TCP test on Docker
-    # Reenable locale_codec after resolving https://github.com/pyre/pyre/issues/65
-    - ctest --output-on-failure -E '(pyre.pkg.ipc.tcp.py|python.locale_codec.py|pyre.pkg.codecs.yaml_|pyre.lib.timers.process_timer|pyre.pkg.timers)'
+    # the extension modules must be loaded, not merely present: {import pyre} succeeds even
+    # when the core extension cannot be loaded, since the package swallows that failure and
+    # sets {pyre.libpyre} to {None}, which is how v1.12.6 shipped on osx-arm64 with grid and
+    # memory bindings that could not be used
+    - python -c "import pyre, journal, pyre.h5; assert pyre.libpyre is not None, 'the pyre bindings did not load'; assert journal.libjournal is not None, 'the journal bindings did not load'; assert pyre.h5.libh5 is not None, 'the h5 bindings did not load'"
+    # a component of each kind of binding does something
+    - python -c "import pyre; import pyre.memory, pyre.grid; b = pyre.memory.heap(type=pyre.memory.cells.double(), cells=16); assert b.cells == 16"
+    - python -c "import journal; c = journal.info('pyre.conda'); c.device = journal.trash(); c.log('the conda package works')"
+    # the project generator finds its templates in the installation
+    - python -c "import pyre; assert (pyre.prefix / 'share' / 'pyre' / 'templates' / 'basic').isDirectory(), str(pyre.prefix)"
   imports:
     - pyre
     - journal
