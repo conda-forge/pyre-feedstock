@@ -32,6 +32,11 @@ requirements:
     - zip
   run:
     - python
+    # the yaml configuration codec; a declared dependency of the python package
+    - pyyaml
+    # the round trip editor of yaml configuration files and the persistence of component
+    # state ride on it; optional for pip, where it is the {editing} extra, included here
+    - ruamel.yaml
 
 test:
   requires:
