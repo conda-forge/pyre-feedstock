@@ -15,6 +15,13 @@ else
     export LDFLAGS="-lrt $LDFLAGS"
 fi
 
+# when cross-compiling, point cmake at the headers of the target's python; under the policies
+# pyre's cmake asks for, FindPython in cmake 4.4.5 looks for them where the build's own python
+# keeps its headers
+if [ "${CONDA_BUILD_CROSS_COMPILATION:-0}" = "1" ]; then
+    CMAKE_ARGS="${CMAKE_ARGS} -DPython_INCLUDE_DIR=${PREFIX}/include/python${PY_VER}"
+fi
+
 mkdir build && cd build
 
 # Override LIBDIR from GNUInstallDirs - would be lib64 on centos
