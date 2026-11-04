@@ -10,9 +10,13 @@ source:
     patches:
 
 build:
-  number: 0
+  number: 1
   # the python floor is 3.11 as of v1.13.0
   skip: true  # [win or py<311 or python_impl == 'pypy']
+  # the project templates under share/ are python files with placeholders, which do not
+  # compile; leaving them out lets conda-build write the bytecode of every module
+  skip_compile_pyc:
+    - share/*
 
 requirements:
   build:
